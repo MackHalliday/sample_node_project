@@ -2,16 +2,20 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-function addNumber(number){
-    return number + number
+async function addNumber(number){
+    try {
+        return number + number
+    } catch(e) {
+        return e
+    } 
 }
 
 app.get('/', (req, res) => {
     addNumber(2)
         .then(result =>
-            res.send(result)
+            res.sendStatus(result)
         )
-        .catch(error => res.send("Ops!"))
+        .catch(error => res.sendStatusç("Ops!"))
 })
 
 app.listen(port, () => {
@@ -20,7 +24,7 @@ app.listen(port, () => {
 
 
 
-function addAnotherNumber(number){
+async function addAnotherNumber(number){
     return number + 3
 }
 
