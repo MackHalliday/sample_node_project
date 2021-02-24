@@ -2,30 +2,23 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-async function addNumber(number){
-    try {
-        return number + number
-    } catch(e) {
-        return e
-    } 
-}
-
 app.get('/', (req, res) => {
-    addNumber(2)
+    sayHello("Hello")
         .then(result =>
-            res.sendStatus(result)
+            res.send(result)
         )
-        .catch(error => res.sendStatusç("Ops!"))
+        .catch(error => console.log(error))
 })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-
-
-async function addAnotherNumber(number){
-    return number + 3
+async function sayHello(hello){
+    try {
+        return hello
+    } catch(e) {
+        return e
+    } 
 }
-
 
